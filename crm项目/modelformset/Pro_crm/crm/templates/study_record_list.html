@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{%  block css %}
+    <style>
+        #dbox{
+            position: relative;
+        }
+        #box{
+            width: 180px;
+            height: 38px;
+            position: absolute;
+            top: -39px;
+            left: 139px;
+        }
+        #box1{
+            position: absolute;
+            top: -39px;
+            left: 325px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="text-align: center;"><h2>{{ title }}</h2></div>
+        <div class="panel-body">
+
+            <form action="" method="post" id="dbox">
+                {% csrf_token %}
+                {{ form_set_obj.management_form }}
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                <tr>
+                    <th style="text-align: center">序号</th>
+                    <th style="text-align: center">学生</th>
+                    <th style="text-align: center">考勤</th>
+                    <th style="text-align: center">成绩</th>
+                    <th style="text-align: center">作业批语</th>
+                </tr>
+                </thead>
+                <tbody id="UserList">
+                {% for form_obj in form_set_obj %}
+                    <tr>
+                        {{ form_obj.id }}
+                        <td style="vertical-align: inherit">{{ forloop.counter }}</td>
+                        <td style="vertical-align: inherit">{{ form_obj.instance.student }}</td>
+                        <td style="vertical-align: inherit">{{ form_obj.attendance }}</td>
+                        <td style="vertical-align: inherit">{{ form_obj.score }}</td>
+                        <td style="vertical-align: inherit">{{ form_obj.homework_note }}</td>
+                        <td class="hidden">{{ form_obj.student }}</td>
+                        <td class="hidden">{{ form_obj.course_record }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <button class="btn btn-primary">保存</button>
+            </form>
+            <nav aria-label="Page navigation" class="text-center" style="margin-top: 250px">
+                <ul class="pagination">
+                    {{ page }}
+                </ul>
+                <div class="pageJump">
+                    <form action="">
+                        <span>跳转到</span>
+                        <input type="number" name="page" style="width: 70px">
+                        <span>页</span>
+                        <button class="button" >确定</button>
+                    </form>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+
+
+{% endblock %}

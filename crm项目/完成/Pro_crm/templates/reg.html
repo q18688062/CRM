@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Title</title>
+
+    <style>
+        select {
+            width: 300px;
+            height: 42px;
+            line-height: 42px;
+            margin-top: 25px;
+            padding: 0 15px;
+            background: #2d2d2d;
+            background: rgba(45, 45, 45, .15);
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #3d3d3d;
+            border: 1px solid rgba(255, 255, 255, .15);
+            -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            font-family: microsoft yahei, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            -o-transition: all .2s;
+            -moz-transition: all .2s;
+            -webkit-transition: all .2s;
+            -ms-transition: all .2s;
+        }
+
+        option {
+            color: black;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+        }
+
+        .register-container {
+            margin: 2% auto 0;
+        }
+        .box{
+            position: relative;
+        }
+        .box1{
+            position: absolute;
+            top:38px;
+            left:-121px;
+        }
+        #pid{
+            text-align: right;
+        }
+    </style>
+
+</head>
+<body>
+<div class="register-container">
+    <h1>ShareLink</h1>
+    <div class="connect">
+        <p>Link the world. Share to world.</p>
+    </div>
+    <form action="" method="post" id="registerForm" novalidate="novalidate">
+        {% csrf_token %}
+{#        {% for field in form_obj %}#}
+{#            <div class="form-group {% if field.errors %}has-error{% endif %} box">#}
+{#            <div id="pid"><label  for="{{ field.id_for_label }}" class="col-sm-3 control-label box1" >{{ field.label }}</label></div>#}
+{#            <div class="col-sm-7">#}
+{#                {{ field }}#}
+{#                <span class="help-block">{{ field.errors.0 }}</span>#}
+{#            </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+                <div>
+                    {{ form_obj.username }}
+                    {{ form_obj.username.errors.0 }}
+                </div>
+                <div>
+                    {{ form_obj.password }}
+                    {{ form_obj.password.errors.0 }}
+                </div>
+                <div>
+                    {{ form_obj.re_password }}
+                    {{ form_obj.re_password.errors.0 }}
+                </div>
+                <div>
+                    {{ form_obj.name }}
+                    {{ form_obj.name.errors.0 }}
+                </div>
+                <div>
+                    {{ form_obj.mobile }}
+                    {{ form_obj.mobile.errors.0 }}
+                </div>
+                <div>
+                    {{ form_obj.department }}
+                    {{ form_obj.department.errors.0 }}
+                </div>
+
+        <button id="submit" type="submit">注 册</button>
+    </form>
+    <a href="{% url 'login' %}">
+        <button type="button" class="register-tis">已经有账号？</button>
+    </a>
+</div>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/common.js' %}"></script>
+<script src="{% static 'js/supersized.3.2.7.min.js' %}"></script>
+<script src="{% static 'js/supersized-init.js' %}"></script>
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+
+</body>
+</html>

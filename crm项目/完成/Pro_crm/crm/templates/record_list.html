@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+{% block content %}
+            {% load rbac %}
+
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="text-align: center;"><h2>{{ title }}</h2></div>
+        <div class="panel-body">
+        {% if request|is_include:'add_record' %}
+            <a href="" style="color: white">
+                <a class="btn btn-primary" href="{% url 'add_record' customer_id=pk %}">录入跟进记录</a>
+            </a>
+        {% endif %}
+            <form action="" class="form-inline pull-right">
+                <input type="text" name="content" class="form-control">
+                <button class="btn btn-success" >搜索</button>
+            </form>
+
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                <tr>
+                    <th style="text-align: center">序号</th>
+                    <th style="text-align: center">ID</th>
+                    <th style="text-align: center">所咨询客户</th>
+                    <th style="text-align: center">跟进内容</th>
+                    <th style="text-align: center">跟进状态</th>
+                    <th style="text-align: center">跟进人</th>
+                    <th style="text-align: center">跟进日期</th>
+                    {% if request|is_include:'edit_record' %}
+                    <th style="text-align: center">操作</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody id="UserList">
+                {% csrf_token %}
+                {% for record in all_record %}
+                    <tr>
+                        <td style="vertical-align: inherit">{{ forloop.counter }}</td>
+                        <td style="vertical-align: inherit">{{ record.pk }}</td>
+                        <td style="vertical-align: inherit">{{ record.customer }}</td>
+                        <td style="vertical-align: inherit">{{ record.note|truncatechars:30 }}</td>
+                        <td style="vertical-align: inherit">{{ record.get_status_display }}</td>
+                        <td style="vertical-align: inherit">{{ record.consultant }}</td>
+                        <td style="vertical-align: inherit">{{ record.date }}</td>
+                        {% if request|is_include:'edit_record' %}
+                        <td style="vertical-align: inherit">
+                            <a href="{% url 'edit_record' record.pk %}" class="btn btn-primary btn-sm">修改</a>
+                            <a href="" class="btn btn-danger btn-sm">删除</a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation" class="text-center" style="margin-top: 250px">
+                <ul class="pagination">
+                    {{ page }}
+                </ul>
+                <div class="pageJump">
+                    <form action="">
+                        <span>跳转到</span>
+                        <input type="number" name="page" style="width: 70px">
+                        <span>页</span>
+                        <button class="button" >确定</button>
+                    </form>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+
+
+{% endblock %}

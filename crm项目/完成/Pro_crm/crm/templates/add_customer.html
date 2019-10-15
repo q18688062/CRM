@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2" style="margin-top: 10px">
+            <div class="panel panel-primary text-center">
+                <div class="panel-heading ">
+                    <h3 class="panel-title ">新增客户</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" method="post" action="" novalidate>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form_obj.name.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.name.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.name }}{{ form_obj.name.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.sex.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.sex.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.sex }}{{ form_obj.sex.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.qq.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.qq.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.qq }}{{ form_obj.qq.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.qq_name.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.qq_name.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.qq_name }}{{ form_obj.qq_name.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.obj.phone.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.phone.label }} </label>
+                            <div class="col-sm-7">
+                                {{ form_obj.phone }}{{ form_obj.phone.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.source.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.source.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.source }}{{ form_obj.source.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.introduce_from.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.introduce_from.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.introduce_from }}{{ form_obj.introduce_from.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.course.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.course.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.course }}{{ form_obj.course.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.class_type.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.class_type.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.class_type }}{{ form_obj.class_type.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.status.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.status.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.status }}{{ form_obj.status.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.next_date.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.next_date.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.next_date }}{{ form_obj.next_date.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.consultant.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.consultant.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.consultant }}{{ form_obj.consultant.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.class_list.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.class_list.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.class_list }}{{ form_obj.class_list.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form_obj.customer_note.id_for_label }}" class="col-sm-3 control-label">{{ form_obj.customer_note.label }}</label>
+                            <div class="col-sm-7">
+                                {{ form_obj.customer_note }}{{ form_obj.customer_note.errors.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <button type="submit" class="btn btn-primary" style="margin-top: 13px;margin-bottom: -15px">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

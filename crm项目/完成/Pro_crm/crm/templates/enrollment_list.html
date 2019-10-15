@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="text-align: center;"><h2>{{ title }}</h2></div>
+        <div class="panel-body">
+        {% load rbac %}
+        {% if request|is_include:'add_enrollment' %}
+            <a href="" style="color: white">
+                <a class="btn btn-primary" href="{% url 'add_enrollment' customer_id=pk %}">录入报名记录</a>
+            </a>
+        {% endif %}
+            <form action="" class="form-inline pull-right">
+                <input type="text" name="content" class="form-control">
+                <button class="btn btn-success" >搜索</button>
+            </form>
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                <tr>
+                    <th style="text-align: center">序号</th>
+                    <th style="text-align: center">客户</th>
+                    <th style="text-align: center">报名班级</th>
+                    <th style="text-align: center">校区</th>
+                    <th style="text-align: center">审核状态</th>
+                    <th style="text-align: center">报名日期</th>
+                    {% if request|is_include:'edit_enrollment' %}
+                    <th style="text-align: center">操作</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody id="UserList">
+                {% csrf_token %}
+                {% for enrollment in all_enrollment %}
+                    <tr>
+                        <td style="vertical-align: inherit">{{ forloop.counter }}</td>
+                        <td style="vertical-align: inherit">{{ enrollment.customer }}</td>
+                        <td style="vertical-align: inherit">{{ enrollment.enrolment_class }}</td>
+                        <td style="vertical-align: inherit">{{ enrollment.school }}</td>
+                        <td style="vertical-align: inherit">{{ enrollment.contract_status }}</td>
+                        <td style="vertical-align: inherit">{{ enrollment.enrolled_date }}</td>
+                        {% if request|is_include:'edit_enrollment' %}
+                        <td style="vertical-align: inherit">
+                            <a href="{% url 'edit_enrollment' enrollment.pk %}" class="btn btn-primary btn-sm">修改</a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation" class="text-center" style="margin-top: 250px">
+                <ul class="pagination">
+                    {{ page }}
+                </ul>
+                <div class="pageJump">
+                    <form action="">
+                        <span>跳转到</span>
+                        <input type="number" name="page" style="width: 70px">
+                        <span>页</span>
+                        <button class="button" >确定</button>
+                    </form>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+
+
+{% endblock %}

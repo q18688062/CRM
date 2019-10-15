@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block css %}
+    <style>
+        li{
+            list-style: none;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2" style="margin-top: 10px">
+            <div class="panel panel-primary ">
+                <div class="panel-heading ">
+                    <h3 class="panel-title ">{{ title }}</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" method="post" action="" novalidate>
+                        {% csrf_token %}
+                        {% for field in form_obj %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                <label {% if not field.field.required %} style="color: #777777" {% endif %} for="{{ field.id_for_label }}"
+                                       class="col-sm-3 control-label">{{ field.label }}</label>
+                                <div class="col-sm-7">
+                                    {{ field }}
+                                    <span class="help-block">{{ field.errors.0 }}</span>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <button type="submit" class="btn btn-primary"
+                                        style="margin: 0 227px;">提交
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
